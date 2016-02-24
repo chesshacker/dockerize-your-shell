@@ -1,16 +1,6 @@
+#!/bin/bash
 
-# set DOCKER_MACHINE_NAME to whatever you want to call your docker machine
-# just make sure it matches what you put in shell/bashrc
-DOCKER_MACHINE_NAME=dshell
-
-# set DOCKER_IMAGE_NAME to whatever you like
-DOCKER_IMAGE_NAME=dshell_image
-
-# DOCKERFILE_PATH should point to the shell directory of this repository
-# or wherever you are keeping the Dockerfile describing your shell container
-DOCKERFILE_PATH=~/.dockerize-your-shell/shell
-
-PS1='osx $ '
+export PS1='osx $ '
 
 # this is to help find commands executed by ssh (non-interactive)
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -37,17 +27,18 @@ if [ "$SESSION_TYPE" != "remote/ssh" ]; then
     sleep 3
   fi
   eval "$(docker-machine env $DOCKER_MACHINE_NAME)"
-  build_dshell="(cd $DOCKERFILE_PATH && docker build --build-arg USERNAME="$USER" --build-arg HOMEDIR="$HOME" -t $DOCKER_IMAGE_NAME .)"
   if [ -z "$(docker images -q $DOCKER_IMAGE_NAME)" ]; then
     if [ ! -d $DOCKERFILE_PATH ]; then
-      git clone "https://github.com/steveortiz/dockerize-your-shell.git" ~/.dockerize-your-shell
+      mkdir $DOCKERFILE_PATH
+      GIT_URL=https://raw.githubusercontent.com/steveortiz/dockerize-your-shell/master
+      curl -sL $GIT_URL"/example/Dockerfile" -o ~/.dockerize-your-shell/Dockerfile
     fi
-    $build_dshell
+    (cd $DOCKERFILE_PATH && docker build --build-arg USERNAME=$USER --build-arg HOMEDIR=$HOME -t $DOCKER_IMAGE_NAME .)
   fi
   MYIP=`ifconfig vboxnet0 | grep 'inet ' | awk '{print $2}'`
   start_dshell="docker run -it --rm -v $HOME:$HOME/.host -v /var/run/docker.sock:/var/run/docker.sock -e HOSTIP=$MYIP $DOCKER_IMAGE_NAME"
   alias dshell=$start_dshell
-  alias dbuild=$build_dshell
+  alias dbuild="(cd $DOCKERFILE_PATH && docker build --build-arg USERNAME=$USER --build-arg HOMEDIR=$HOME -t $DOCKER_IMAGE_NAME .)"
   alias dmrestart='docker-machine restart $DOCKER_MACHINE_NAME && sleep 3 && eval "$(docker-machine env $DOCKER_MACHINE_NAME)"'
   $start_dshell
 fi
