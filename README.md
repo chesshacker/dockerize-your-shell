@@ -19,11 +19,11 @@ whatever you like and make the Dockerfile your own.
 
 ## Getting Started
 
-* make a copy of your ~/.bashrc file somewhere safe
-* replace the contents of your ~/.bashrc with host-bashrc-example.sh
-* customize the environment variables at the top of the bashrc file
-* open a new terminal and hopefully after some one-time initialization, you will
-  be greeted by your new shell
+Run the following command:
+
+```
+curl -sL https://raw.githubusercontent.com/steveortiz/dockerize-your-shell/master/setup.sh | bash -
+```
 
 ## Usage
 
@@ -63,6 +63,11 @@ directory. If you use ~/.gitconfig instead, you can run
 `mkdir -p ~/.config/git && mv ~/.gitconfig ~/.config/git/config` to fix it.
 
 ## Customization
+
+After you are setup, customize ~/.dockerize-your-shell/Dockerfile to install
+anything you like.
+
+TODO: Restore the ability to add other directories.
 
 In addition to apt-get installing more things, you may want to symbolically
 link more directories from your host to your dockerized shell. In my personal
