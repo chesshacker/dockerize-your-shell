@@ -1,0 +1,3 @@
+#!/bin/bash
+WORKING_DIR=`pwd`
+ssh host "(cd \"$WORKING_DIR\" && $@)"
