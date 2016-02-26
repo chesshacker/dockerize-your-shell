@@ -61,7 +61,7 @@ ONBUILD ENV MOUNTDIR=$HOMEDIR/.host
 
 # create the user and setup sudo
 ONBUILD RUN mkdir /Users \
-  && useradd -d $HOMEDIR -ms /bin/bash $USERNAME \
+  && useradd -d $HOMEDIR -G root -ms /bin/bash $USERNAME \
   && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # link to content on .host
