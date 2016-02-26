@@ -14,3 +14,4 @@ GIT_URL=https://raw.githubusercontent.com/steveortiz/dockerize-your-shell/master
 curl -sL $GIT_URL"/dockerize-your-shell.sh" -o ~/.dockerize-your-shell/dockerize-your-shell.sh
 # TODO: check for a dockerfile before possibly writing over it!
 curl -sL $GIT_URL"/example/Dockerfile" -o ~/.dockerize-your-shell/Dockerfile
+curl -sL $GIT_URL"/example/bashrc" -o ~/.dockerize-your-shell/bashrc

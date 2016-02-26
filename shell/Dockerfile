@@ -45,8 +45,11 @@ ADD hostexec /usr/local/bin/hostexec
 ADD bash-completion-git /etc/bash_completion.d/git
 ADD bash-completion-ssh /etc/bash_completion.d/ssh
 
-# add some files to the skel directory
-ADD bashrc /etc/skel/.bashrc
+# setup system bashrc
+ADD system-bashrc.sh /etc/bash-dockerize-my-shell.sh
+RUN echo "source /etc/bash-dockerize-my-shell.sh" >> /etc/bash.bashrc
+
+# add files to the skel directory
 ADD ssh-config /etc/skel/.ssh/config
 
 # at least USERNAME must be passed in as a build-arg

@@ -1,4 +1,3 @@
-export PS1='$ '
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 export EDITOR=vim
@@ -10,8 +9,6 @@ sed -i "s/_HOSTIP_/$HOSTIP/" ~/.ssh/config
 
 alias git=hub
 alias open="hostexec open"
-alias atom="hostexec atom"
-alias mate="hostexec mate"
 export BROWSER="hostexec open -a /Applications/Safari.app"
 alias browse="$BROWSER"
 

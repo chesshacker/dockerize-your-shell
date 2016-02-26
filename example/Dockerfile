@@ -3,3 +3,5 @@ MAINTAINER Steve Ortiz <steve@ortizaggies.com>
 
 # example: installing the ping utility
 RUN sudo apt-get install -y iputils-ping
+
+ADD bashrc $HOMEDIR/.bashrc
