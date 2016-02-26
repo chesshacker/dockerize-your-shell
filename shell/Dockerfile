@@ -64,14 +64,11 @@ ONBUILD RUN mkdir /Users \
   && useradd -d $HOMEDIR -ms /bin/bash $USERNAME \
   && echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-# link to content on .host -- feel free to add to this list
-ONBUILD ENV LINK_HOST_DIRS="Desktop Downloads .config .docker"
+# link to content on .host
 ONBUILD RUN chmod 700 $HOMEDIR/.ssh \
   && ln -sf $MOUNTDIR/.ssh/id_rsa $HOMEDIR/.ssh/id_rsa \
   && ln -sf $MOUNTDIR/.ssh/known_hosts $HOMEDIR/.ssh/known_hosts \
-  && for directory in $LINK_HOST_DIRS; do \
-    ln -sf $MOUNTDIR/$directory $HOMEDIR/$directory; \
-  done \
+  && ln -sf $MOUNTDIR/.config $HOMEDIR/.config \
   && chown -R $USERNAME: $HOMEDIR
 
 # define how it is executed

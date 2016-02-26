@@ -14,6 +14,6 @@ alias browse="$BROWSER"
 
 export DOCKER_MACHINE_NAME="dshell"
 export DOCKER_TLS_VERIFY="1"
-DOCKER_HOST_IP=`jq -r '.Driver.IPAddress' ~/.docker/machine/machines/$DOCKER_MACHINE_NAME/config.json`
+DOCKER_HOST_IP=`jq -r '.Driver.IPAddress' ~/.host/.docker/machine/machines/$DOCKER_MACHINE_NAME/config.json`
 export DOCKER_HOST="tcp://"$DOCKER_HOST_IP":2376"
 export DOCKER_CERT_PATH=$HOME"/.host/.docker/machine/machines/"$DOCKER_MACHINE_NAME
