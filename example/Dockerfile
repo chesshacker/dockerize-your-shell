@@ -1,5 +1,4 @@
-FROM steveortiz/dockerize-your-shell:0.1
-MAINTAINER Steve Ortiz <steve@ortizaggies.com>
+FROM steveortiz/dockerize-your-shell
 
 # install anything you like here...
 # for example: install the ping utility
