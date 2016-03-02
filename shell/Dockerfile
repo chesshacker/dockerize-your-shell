@@ -33,6 +33,11 @@ RUN apt-get install apt-transport-https ca-certificates \
   && apt-get update \
   && apt-get install -y docker-engine
 
+# install docker-compose
+RUN curl -sL https://github.com/docker/compose/releases/download/1.6.2/docker-compose-`uname -s`-`uname -m` > docker-compose \
+  && chmod +x docker-compose \
+  && sudo mv docker-compose /usr/local/bin
+
 # install the latest hub
 RUN HUB_URL="https://github.com"`curl -sL https://github.com/github/hub/releases/latest | grep hub-linux-amd64 | grep -o -P '(?<=href=")[^"]+'` \
   && mkdir -p /tmp/hub \

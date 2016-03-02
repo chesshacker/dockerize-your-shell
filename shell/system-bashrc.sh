@@ -11,6 +11,7 @@ alias git=hub
 alias open="hostexec open"
 export BROWSER="hostexec open -a /Applications/Safari.app"
 alias browse="$BROWSER"
+alias docker-machine="hostexec docker-machine"
 
 export DOCKER_MACHINE_NAME="dshell"
 export DOCKER_TLS_VERIFY="1"
